@@ -25,7 +25,7 @@ def etl_producto():
 
         # Carga
         nuevos.to_sql("DimProducto", engine_olap, if_exists="append", index=False)
-        print("✅ ETL completado exitosamente para DimProducto")
+        print("ETL completado exitosamente para DimProducto")
 
     except Exception as e:
-        print("❌ Error en el ETL:", str(e))
+        print("Error en el ETL:", str(e))

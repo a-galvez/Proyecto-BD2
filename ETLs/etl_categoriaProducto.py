@@ -14,7 +14,9 @@ def etl_categoriaProducto():
         engine_olap = conectar_bd("OLAP_AdventureWorks")
 
         # Consulta ingresada por usuario
-        consulta = input("Ingrese la consulta SQL para extraer los productos:\n")
+        consulta = input(
+            "Ingrese la consulta SQL para extraer las categorías de productos:\n"
+        )
 
         # Extracción
         df = pd.read_sql(consulta, engine_oltp)
@@ -28,7 +30,7 @@ def etl_categoriaProducto():
         nuevos.to_sql(
             "DimCategoriaProducto", engine_olap, if_exists="append", index=False
         )
-        print("✅ ETL completado exitosamente para DimCategoriaProducto")
+        print("ETL completado exitosamente para DimCategoriaProducto")
 
     except Exception as e:
-        print("❌ Error en el ETL:", str(e))
+        print("Error en el ETL:", str(e))
