@@ -1,0 +1,32 @@
+Para Método de Envío 
+SELECT ShipMethodID AS IdMetodoEnvio, Name AS NombreMetodo FROM Purchasing.ShipMethod;
+
+Ciudad
+SELECT StateProvinceID AS IdCiudad, Name AS NombreCiudad, CountryRegionCode AS IdPais FROM Person.StateProvince;
+
+País
+SELECT CountryRegionCode AS IdPais, Name AS NombrePais FROM Person.CountryRegion;
+
+Cliente
+SELECT c.CustomerID, p.FirstName + ' ' + p.LastName AS NombreCliente, a.StateProvinceID FROM Sales.Customer c JOIN Person.Person p ON c.PersonID = p.BusinessEntityID JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = p.BusinessEntityID JOIN Person.Address a ON bea.AddressID = a.AddressID UNION SELECT c.CustomerID, s.Name AS NombreCliente, a.StateProvinceID FROM Sales.Customer c JOIN Sales.Store s ON c.StoreID = s.BusinessEntityID JOIN Person.BusinessEntityAddress bea ON bea.BusinessEntityID = s.BusinessEntityID JOIN Person.Address a ON bea.AddressID = a.AddressID;
+
+Canal de Venta
+SELECT DISTINCT CASE WHEN OnlineOrderFlag = 1 THEN 'Online' ELSE 'Tienda' END AS Canal FROM Sales.SalesOrderHeader;
+
+Vendedor
+SELECT hr.NationalIDNumber, p.FirstName + ' ' + p.LastName AS NombreVendedor, p.BusinessEntityID FROM HumanResources.Employee hr JOIN Sales.SalesPerson sp ON hr.BusinessEntityID = sp.BusinessEntityID JOIN Person.Person p ON hr.BusinessEntityID = p.BusinessEntityID;
+
+Tiempo
+SELECT CONVERT(DATE, OrderDate) AS Fecha, DATEPART(DAY, OrderDate) AS Dia, DATEPART(MONTH, OrderDate) AS Mes, DATENAME(MONTH, OrderDate) AS NombreMes, DATEPART(QUARTER, OrderDate) AS Trimestre, DATEPART(YEAR, OrderDate) AS Anio FROM Sales.SalesOrderHeader GROUP BY CONVERT(DATE, OrderDate);
+
+Producto
+SELECT ProductId AS IdProducto, Name AS NombreProducto, ProductSubcategoryID AS IdSubcategoria, ListPrice AS PrecioUnitario FROM Production.Product WHERE ListPrice > 0;
+
+Subcategoría de Producto
+SELECT ProductSubcategoryID AS IdSubcategoria, Name AS NombreSubcategoria, ProductCategoryID AS IdCategoria FROM Production.ProductSubcategory;
+
+Categoría de Producto
+SELECT ProductCategoryID AS IdCategoria, Name AS NombreCategoria FROM Production.ProductCategory;
+
+Tabla de Hechos (Ventas)
+SELECT soh.SalesOrderID AS IdVenta, CONVERT(DATE, soh.OrderDate) AS IdTiempo, soh.CustomerID, sod.ProductID, soh.SalesPersonID, soh.ShipMethodID, CASE WHEN soh.OnlineOrderFlag = 1 THEN 'Online' ELSE 'Tienda' END AS CanalVenta, soh.TotalDue AS MontoVenta, sod.OrderQty AS CantidadVendida FROM Sales.SalesOrderHeader soh JOIN Sales.SalesOrderDetail sod ON soh.SalesOrderID = sod.SalesOrderID;
