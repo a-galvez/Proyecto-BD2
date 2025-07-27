@@ -1,6 +1,5 @@
 CREATE TABLE DimTiempo (
-    IdTiempo INT PRIMARY KEY IDENTITY(1,1),
-    Fecha DATE NOT NULL,
+    IdTiempo DATE PRIMARY KEY,
     Dia INT,
     Mes INT,
     NombreMes VARCHAR(20),
@@ -13,9 +12,9 @@ CREATE TABLE DimPais (
     NombrePais VARCHAR(100)
 );
 
-CREATE TABLE DimCiudad (
-    IdCiudad INT PRIMARY KEY,
-    NombreCiudad VARCHAR(100),
+CREATE TABLE DimProvincia (
+    IdProvincia INT PRIMARY KEY,
+    NombreProvincia VARCHAR(100),
     IdPais VARCHAR(2),
     FOREIGN KEY (IdPais) REFERENCES DimPais(IdPais)
 );
@@ -23,8 +22,8 @@ CREATE TABLE DimCiudad (
 CREATE TABLE DimCliente (
     IdCliente INT PRIMARY KEY,
     NombreCliente VARCHAR(150),
-    IdCiudad INT,
-    FOREIGN KEY (IdCiudad) REFERENCES DimCiudad(IdCiudad)
+    IdProvincia INT,
+    FOREIGN KEY (IdProvincia) REFERENCES DimProvincia(IdProvincia)
 );
 
 CREATE TABLE DimCategoriaProducto (
@@ -50,7 +49,6 @@ CREATE TABLE DimProducto (
 CREATE TABLE DimVendedor (
     IdVendedor INT PRIMARY KEY,
     NombreVendedor VARCHAR(150),
-    CodigoEmpleado VARCHAR(50)
 );
 
 CREATE TABLE DimMetodoEnvio (
@@ -65,7 +63,7 @@ CREATE TABLE DimCanalVenta (
 
 CREATE TABLE HechosVentas (
     IdVenta INT PRIMARY KEY,
-    IdTiempo INT,
+    IdTiempo DATE,
     IdCliente INT,
     IdProducto INT,
     IdVendedor INT,
