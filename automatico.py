@@ -11,27 +11,26 @@ from ETLs.etl_tiempo import etl_tiempo
 from ETLs.etl_vendedor import etl_vendedor
 
 
+def ejecutar_etl(nombre_tabla, funcion_etl):
+    print(f"---- Ejecutando el ETL de la tabla {nombre_tabla} ----\n")
+    try:
+        funcion_etl()
+        print(f"ETL de {nombre_tabla} ejecutado correctamente.\n")
+    except Exception as e:
+        print("\n")
+
+
 def automatico():
-    print("---- Ejecutando el ETL de la tabla DimPais -----\n")
-    etl_pais()
-    print("---- Ejecutando el ETL de la tabla DimCiudad ----\n")
-    etl_provincia()
-    print("---- Ejecutando el ETL de la tabla DimCliente ----\n")
-    etl_cliente()
-    print("---- Ejecutando el ETL de la tabla DimCategoriaProducto ----\n")
-    etl_categoriaProducto()
-    print("---- Ejecutando el ETL de la tabla DimSubcategoriaProducto ----\n")
-    etl_subcategoriaProducto()
-    print("---- Ejecutando el ETL de la tabla DimProducto ----\n")
-    etl_producto()
-    print("---- Ejecutando el ETL de la tabla DimCanalVenta ----\n")
-    etl_canalVenta()
-    print("---- Ejecutando el ETL de la tabla DimMetodoEnvio ----\n")
-    etl_metodoEnvio()
-    print("---- Ejecutando el ETL de la tabla DimTiempo ----\n")
-    etl_tiempo()
-    print("---- Ejecutando el ETL de la tabla DimVendedor ----\n")
-    etl_vendedor()
-    print("---- Ejecutando el ETL de la tabla de Hechos ----\n")
-    etl_hechos()
-    print("---- Se ejecutaron todos los ETLs ----\n")
+    ejecutar_etl("DimPais", etl_pais)
+    ejecutar_etl("DimCiudad", etl_provincia)
+    ejecutar_etl("DimCliente", etl_cliente)
+    ejecutar_etl("DimCategoriaProducto", etl_categoriaProducto)
+    ejecutar_etl("DimSubcategoriaProducto", etl_subcategoriaProducto)
+    ejecutar_etl("DimProducto", etl_producto)
+    ejecutar_etl("DimCanalVenta", etl_canalVenta)
+    ejecutar_etl("DimMetodoEnvio", etl_metodoEnvio)
+    ejecutar_etl("DimTiempo", etl_tiempo)
+    ejecutar_etl("DimVendedor", etl_vendedor)
+    ejecutar_etl("Tabla de Hechos", etl_hechos)
+
+    print("---- Finalizó la ejecución automática de los ETLs ----\n")
