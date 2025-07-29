@@ -15,7 +15,7 @@ def etl_subcategoriaProducto():
 
         # Consulta ingresada por usuario
         consulta = input(
-            "-> Ingrese la consulta SQL para extraer las subcategorias de productos:\n"
+            "-> Ingrese la consulta SQL para extraer las subcategorias de productos: \n"
         )
 
         # Extracción
@@ -31,7 +31,7 @@ def etl_subcategoriaProducto():
         nuevos.to_sql(
             "DimSubcategoriaProducto", engine_olap, if_exists="append", index=False
         )
-        print("---- ETL completado exitosamente para DimSubcategoriaProducto ----")
+        print("---- ETL completado exitosamente para DimSubcategoriaProducto ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))

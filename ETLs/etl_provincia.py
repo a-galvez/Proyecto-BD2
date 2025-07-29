@@ -10,7 +10,7 @@ def etl_provincia():
         engine_olap = conectar_bd("OLAP_AdventureWorks")
 
         # Consulta ingresada por el usuario
-        consulta = input("-> Ingrese la consulta SQL para extraer las provincias:\n")
+        consulta = input("-> Ingrese la consulta SQL para extraer las provincias: \n")
 
         # Extracción
         df = pd.read_sql(consulta, engine_oltp)
@@ -21,7 +21,7 @@ def etl_provincia():
 
         # Carga
         nuevos.to_sql("DimProvincia", engine_olap, if_exists="append", index=False)
-        print("---- ETL completado exitosamente para DimProvincia ----")
+        print("---- ETL completado exitosamente para DimProvincia ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))

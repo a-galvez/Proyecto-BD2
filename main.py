@@ -11,20 +11,21 @@ from ETLs.etl_tiempo import etl_tiempo
 from ETLs.etl_vendedor import etl_vendedor
 
 from automatico import automatico
+from manual import manual
 
-print("==== Proyecto Final Bases de Datos 2 - Grupo 1 =====")
+print("==== Proyecto Final Bases de Datos 2 - Grupo 1 =====\n")
 print("Seleccione el modo para ejecutar el ETL:")
 print("1. Automático")
-print("2. Manual")
+print("2. Manual\n")
 
 opcion = input("Ingrese su opción: ")
 
 match opcion:
     case "1":
-        print("Ejecutando ETL en modo automático...")
+        print("Ejecutando ETL en modo automático...\n")
         automatico()
     case "2":
-        print("Ejecutando ETL en modo manual...")
-        # ejecutar_etl_manual()
+        print("Ejecutando ETL en modo manual...\n")
+        manual()
     case _:
         print("Opción no válida")

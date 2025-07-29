@@ -13,7 +13,7 @@ def etl_canalVenta():
 
         # Consulta ingresada por el usuario
         consulta = input(
-            "-> Ingrese la consulta SQL para extraer los canales de venta:\n"
+            "-> Ingrese la consulta SQL para extraer los canales de venta: \n"
         )
 
         # Extracción
@@ -25,7 +25,7 @@ def etl_canalVenta():
 
         # Carga
         nuevos.to_sql("DimCanalVenta", engine_olap, if_exists="append", index=False)
-        print("---- ETL completado exitosamente para DimCanalVenta ----")
+        print("---- ETL completado exitosamente para DimCanalVenta ----\n")
 
     except Exception as e:
-        print("Error en el ETL de Canal de Venta: ", str(e))
+        print("Error en el ETL de Canal de Venta: \n", str(e))

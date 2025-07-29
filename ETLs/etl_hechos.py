@@ -15,7 +15,7 @@ def etl_hechos():
 
         # Consulta ingresada por usuario
         consulta = input(
-            "-> Ingrese la consulta SQL para extraer los datos para la tabla de hechos:\n"
+            "-> Ingrese la consulta SQL para extraer los datos para la tabla de hechos: \n"
         )
 
         # Extracción
@@ -27,7 +27,7 @@ def etl_hechos():
 
         # Carga
         nuevos.to_sql("HechosVentas", engine_olap, if_exists="append", index=False)
-        print("---- ETL completado exitosamente para la tabla de hechos ----")
+        print("---- ETL completado exitosamente para la tabla de hechos ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))

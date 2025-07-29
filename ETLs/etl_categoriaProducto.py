@@ -30,7 +30,7 @@ def etl_categoriaProducto():
         nuevos.to_sql(
             "DimCategoriaProducto", engine_olap, if_exists="append", index=False
         )
-        print("---- ETL completado exitosamente para DimCategoriaProducto ----")
+        print("---- ETL completado exitosamente para DimCategoriaProducto ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))

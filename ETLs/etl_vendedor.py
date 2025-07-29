@@ -12,7 +12,7 @@ def etl_vendedor():
         engine_oltp = conectar_bd("AdventureWorks2022")
         engine_olap = conectar_bd("OLAP_AdventureWorks")
 
-        consulta = input("-> Ingrese la consulta SQL para extraer los vendedores:\n")
+        consulta = input("-> Ingrese la consulta SQL para extraer los vendedores: \n")
 
         df = pd.read_sql(consulta, engine_oltp)
 
@@ -22,7 +22,7 @@ def etl_vendedor():
         nuevos = df[~df["IdVendedor"].isin(df_existentes["IdVendedor"])]
 
         nuevos.to_sql("DimVendedor", engine_olap, if_exists="append", index=False)
-        print("---- ETL completado exitosamente para DimVendedor ----")
+        print("---- ETL completado exitosamente para DimVendedor ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))

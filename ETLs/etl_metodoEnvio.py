@@ -14,7 +14,7 @@ def etl_metodoEnvio():
         engine_olap = conectar_bd("OLAP_AdventureWorks")
 
         consulta = input(
-            "-> Ingrese la consulta SQL para extraer los métodos de envío:\n"
+            "-> Ingrese la consulta SQL para extraer los métodos de envío: \n"
         )
 
         df = pd.read_sql(consulta, engine_oltp)
@@ -28,7 +28,7 @@ def etl_metodoEnvio():
 
         # Carga
         nuevos.to_sql("DimMetodoEnvio", engine_olap, if_exists="append", index=False)
-        print("---- ETL completado exitosamente para DimMetodoEnvio ----")
+        print("---- ETL completado exitosamente para DimMetodoEnvio ----\n")
 
     except Exception as e:
-        print("Error en el ETL: ", str(e))
+        print("Error en el ETL: \n", str(e))
